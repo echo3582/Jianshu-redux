@@ -1,19 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper } from './style';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
-class Header extends Component {
-	constructor (props) {
-		super(props);
-		this.state = {
-			focused: false
-		}
-		this.handleFocused = this.handleFocused.bind(this);
-		this.handleBlur = this.handleBlur.bind(this);		
-	}
-
-	render () {
-		return (
+const Header = (props) => {
+	return (
 			<HeaderWrapper>
 				<Logo href = "/"/>
 				<Nav>
@@ -25,16 +16,16 @@ class Header extends Component {
 					</NavItem>	
 					<SearchWrapper>
 						<CSSTransition
-							in={this.state.focused}
+							in={props.focused}
 							timeout={300}
 							classNames="slide"
 						>
 							<NavSearch className={
-								this.state.focused ? "focused" : ''
-							} onFocus={this.handleFocused} onBlur={this.handleBlur}>
+								props.focused ? "focused" : ''
+							} onFocus={props.handleFocused} onBlur={props.handleBlur}>
 							</NavSearch>
 						</CSSTransition>
-						<i className={this.state.focused ? "focused iconfont" : 'iconfont'}>&#xe6cf;</i>	
+						<i className={props.focused ? "focused iconfont" : 'iconfont'}>&#xe6cf;</i>	
 					</SearchWrapper>	
 				</Nav>
 				<Addition>
@@ -43,18 +34,28 @@ class Header extends Component {
 				</Addition>							
 			</HeaderWrapper>			
 		)
-	}
-
-	handleFocused () {
-		this.setState({
-			focused: true
-		})
-	}	
-	handleBlur () {
-		this.setState({
-			focused: false
-		})
-	}	
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+	return {
+		focused: state.focused
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		handleFocused () {
+			const action = {
+				type: 'focus'
+			};
+			dispatch(action);
+		},
+		handleBlur () {
+			const action = {
+				type: 'blur'
+			};
+			dispatch(action);
+		}
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
