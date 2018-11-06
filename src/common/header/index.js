@@ -1,8 +1,31 @@
 import React from 'react';
-import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper } from './style';
+import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper, SearchInfo, SearchInfoTitle, SearchInfoSwitch, SearchInfoItem, SearchInfoList } from './style';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
+
+const searchInfoSwitch = (show) => {
+	if (show) {
+		return (
+			<SearchInfo>
+				<SearchInfoTitle>
+				热门搜索
+					<SearchInfoSwitch>换一批</SearchInfoSwitch>
+				</SearchInfoTitle>
+				<SearchInfoList>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+				</SearchInfoList>
+			</SearchInfo>
+		)
+	} else {
+		return null;
+	}
+}
 
 const Header = (props) => {
 	return (
@@ -27,6 +50,7 @@ const Header = (props) => {
 							</NavSearch>
 						</CSSTransition>
 						<i className={props.focused ? "focused iconfont" : 'iconfont'}>&#xe6cf;</i>	
+						{searchInfoSwitch(props.focused)}
 					</SearchWrapper>	
 				</Nav>
 				<Addition>
