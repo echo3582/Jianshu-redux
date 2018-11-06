@@ -1,15 +1,16 @@
 import * as actionTypes from './actionTypes';
+import { Map } from 'immutable';
 
-const defaultState = {
+const defaultState = Map({
 	focused: false
-};
+});
 
 export default (state = defaultState, action) => {
 	if (action.type === actionTypes.FOCUS) {
-		return { focused: true }
+		return state.set('focused', true)
 	}
 	if (action.type === actionTypes.BLUR) {
-		return { focused: false }
+		return state.set('focused', false)
 	}
 	return state;
 }
