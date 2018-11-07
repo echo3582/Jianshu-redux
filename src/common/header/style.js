@@ -48,12 +48,13 @@ export const NavSearch = styled.input`
 	height: 38px;
 	padding-left: 20px;
 	padding-right: 40px;
-	border: 1px solid #eee;
+	border: none;
 	border-radius: 40px;
 	font-size: 14px;
 	margin-top: 9px;
 	background: #eee; 
 	color: #666;
+	outline: none;
 	&::placeholder {
 		color: #999;
 	}
@@ -102,6 +103,7 @@ export const Button = styled.div`
 export const SearchWrapper = styled.div`
 	position: relative;
 	float: left;
+	border: none;
 	.iconfont {
 		position: absolute;
 		top: 13px;
