@@ -10,29 +10,38 @@ class Header extends Component {
 		this.searchInfoSwitch = this.searchInfoSwitch.bind(this);
 	}
 
-	searchInfoSwitch (show) {
-		const { focused, list } = this.props;
-		if (show) {
-			return (
-				<SearchInfo>
-					<SearchInfoTitle>
-					热门搜索
-						<SearchInfoSwitch>换一批</SearchInfoSwitch>
-					</SearchInfoTitle>
-					<SearchInfoList>
-						{list.map((item) => (
-							<SearchInfoItem key={item}>{item}</SearchInfoItem>
-						))}
-					</SearchInfoList>
-				</SearchInfo>
-			)
-		} else {
-			return null;
+	searchInfoSwitch (show, mouseIn) {
+		const { list, page, hover, pageNum, handleChangePage, handleHover, handleHoverOut } = this.props;
+		const newList = list.toJS();
+		const pageList = [];
+		if (newList.length) {
+			for(let i = 10 * (page-1); i< 10 * page; i++) {
+				pageList.push(newList[i]);
+			}
+		}
+		if (pageList) {
+			if (show || mouseIn) {
+				return (
+					<React.Fragment>
+						<SearchInfoTitle>
+						热门搜索
+							<SearchInfoSwitch onClick={() => handleChangePage(page, pageNum)} onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className={hover ? 'hover' : ''}>换一批</SearchInfoSwitch>
+						</SearchInfoTitle>
+						<SearchInfoList>
+							{pageList.map((item) => (
+								<SearchInfoItem key={item}>{item}</SearchInfoItem>
+							))}
+						</SearchInfoList>
+					</React.Fragment>
+				)
+			} else {
+				return null;
+			}
 		}
 	}
 
 	render () {
-		const { focused, list, handleFocused, handleBlur } = this.props;
+		const { focused, mouseIn, handleFocused, handleBlur, handleMouseIn, handleMouseLeave } = this.props;
 		return (
 			<HeaderWrapper>
 				<Logo href = "/"/>
@@ -54,8 +63,10 @@ class Header extends Component {
 							} onFocus={handleFocused} onBlur={handleBlur}>
 							</NavSearch>
 						</CSSTransition>
-						<i className={focused ? "focused iconfont" : 'iconfont'}>&#xe6cf;</i>	
-						{this.searchInfoSwitch(focused)}
+						<i className={focused ? "focused iconfont" : "iconfont"}>&#xe6cf;</i>	
+						<SearchInfo  onMouseEnter={handleMouseIn} onMouseLeave={handleMouseLeave}>
+							{this.searchInfoSwitch(focused, mouseIn)}							
+						</SearchInfo>
 					</SearchWrapper>	
 				</Nav>
 				<Addition>
@@ -70,7 +81,12 @@ class Header extends Component {
 const mapStateToprops = (state) => {
 	return {
 		focused: state.getIn(['header', 'focused']),
-		list: state.getIn(['header', 'list'])
+		hover: state.getIn(['header', 'hover']),
+		mouseIn: state.getIn(['header', 'mouseIn']),
+		mouseLeave: state.getIn(['header', 'mouseLeave']),
+		list: state.getIn(['header', 'list']),
+		page: state.getIn(['header', 'page']),
+		pageNum: state.getIn(['header', 'pageNum'])
 	}
 }
 
@@ -82,6 +98,25 @@ const mapDispatchToprops = (dispatch) => {
 		},
 		handleBlur () {
 			dispatch(actionCreators.blur());
+		},
+		handleMouseIn () {
+			dispatch(actionCreators.mouseIn());
+		},
+		handleMouseLeave () {
+			dispatch(actionCreators.mouseLeave());
+		},
+		handleChangePage (page, pageNum) {
+			if (page < pageNum) {
+				dispatch(actionCreators.changePage(page + 1));			
+			} else {
+				dispatch(actionCreators.changePage(1));
+			}
+		},
+		handleHover () {
+			dispatch(actionCreators.hover());
+		},
+		handleHoverOut () {
+			dispatch(actionCreators.hoverOut());
 		}
 	}
 }

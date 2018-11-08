@@ -139,6 +139,10 @@ export const SearchInfoSwitch = styled.div`
 	float: right;
 	font-size: 12px;
 	color: #969696;
+	&.hover {
+		color: #333333;
+		cursor: pointer;
+	}
 `;
 
 export const SearchInfoItem = styled.a`
