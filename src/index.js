@@ -5,11 +5,12 @@ import './style.js';
 import store from './store';
 import { Provider } from 'react-redux';
 
-ReactDOM.render(        
+const app = (
 	<Provider store={store}>
 		<App />
-    </Provider>, 
-	document.getElementById('root')
+	</Provider>
 );
+
+ReactDOM.render(app, document.getElementById('root'));
 
 
