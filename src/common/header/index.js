@@ -45,7 +45,7 @@ class Header extends Component {
 	}
 
 	render () {
-		const { focused, mouseIn, handleFocused, handleBlur, handleMouseIn, handleMouseLeave } = this.props;
+		const { focused, mouseIn, handleFocused, handleBlur, handleMouseIn, handleMouseLeave, list } = this.props;
 		return (
 			<HeaderWrapper>
 				<Logo href = "/"/>
@@ -64,7 +64,7 @@ class Header extends Component {
 						>
 							<NavSearch className={
 								focused ? "focused" : ''
-							} onFocus={handleFocused} onBlur={handleBlur}>
+							} onFocus={() => handleFocused(list)} onBlur={handleBlur}>
 							</NavSearch>
 						</CSSTransition>
 						<i className={focused ? "focused iconfont zoom" : "iconfont zoom"}>&#xe6cf;</i>	
@@ -96,9 +96,9 @@ const mapStateToprops = (state) => {
 
 const mapDispatchToprops = (dispatch) => {
 	return {
-		handleFocused () {
+		handleFocused (list) {
 			dispatch(actionCreators.focus());
-			dispatch(actionCreators.getList());
+			(list.size === 0) && dispatch(actionCreators.getList());
 		},
 		handleBlur () {
 			dispatch(actionCreators.blur());
@@ -116,7 +116,7 @@ const mapDispatchToprops = (dispatch) => {
 			} else {
 				originRotateAngle = 0;
 			}
-			spin.style.transform = `rotate(${360+originRotateAngle}deg)`
+			spin.style.transform = `rotate(${360+originRotateAngle}deg)`;
 			if (page < pageNum) {
 				dispatch(actionCreators.changePage(page + 1));			
 			} else {
