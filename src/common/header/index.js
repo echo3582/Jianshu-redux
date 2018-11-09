@@ -8,6 +8,7 @@ class Header extends Component {
 	constructor (props) {
 		super(props);
 		this.searchInfoSwitch = this.searchInfoSwitch.bind(this);
+		this.mySpin = React.createRef();
 	}
 
 	searchInfoSwitch (show, mouseIn) {
@@ -25,11 +26,14 @@ class Header extends Component {
 					<React.Fragment>
 						<SearchInfoTitle>
 						热门搜索
-							<SearchInfoSwitch onClick={() => handleChangePage(page, pageNum)} onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className={hover ? 'hover' : ''}>换一批</SearchInfoSwitch>
+							<SearchInfoSwitch onClick={() => handleChangePage(page, pageNum, this.mySpin.current)} onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className={hover ? 'hover' : ''}>
+							<i ref={this.mySpin} className="iconfont spin">&#xe851;</i>
+							换一批
+							</SearchInfoSwitch>
 						</SearchInfoTitle>
 						<SearchInfoList>
 							{pageList.map((item) => (
-								<SearchInfoItem key={item}>{item}</SearchInfoItem>
+								item ? <SearchInfoItem key={item}>{item}</SearchInfoItem> : ''
 							))}
 						</SearchInfoList>
 					</React.Fragment>
@@ -63,7 +67,7 @@ class Header extends Component {
 							} onFocus={handleFocused} onBlur={handleBlur}>
 							</NavSearch>
 						</CSSTransition>
-						<i className={focused ? "focused iconfont" : "iconfont"}>&#xe6cf;</i>	
+						<i className={focused ? "focused iconfont zoom" : "iconfont zoom"}>&#xe6cf;</i>	
 						<SearchInfo  onMouseEnter={handleMouseIn} onMouseLeave={handleMouseLeave}>
 							{this.searchInfoSwitch(focused, mouseIn)}							
 						</SearchInfo>
@@ -105,7 +109,14 @@ const mapDispatchToprops = (dispatch) => {
 		handleMouseLeave () {
 			dispatch(actionCreators.mouseLeave());
 		},
-		handleChangePage (page, pageNum) {
+		handleChangePage (page, pageNum, spin) {
+			let originRotateAngle = spin.style.transform.replace(/[^0-9]/ig, '');
+			if (originRotateAngle) {
+				originRotateAngle = parseInt(originRotateAngle);
+			} else {
+				originRotateAngle = 0;
+			}
+			spin.style.transform = `rotate(${360+originRotateAngle}deg)`
 			if (page < pageNum) {
 				dispatch(actionCreators.changePage(page + 1));			
 			} else {

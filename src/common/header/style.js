@@ -104,7 +104,7 @@ export const SearchWrapper = styled.div`
 	position: relative;
 	float: left;
 	border: none;
-	.iconfont {
+	.zoom {
 		position: absolute;
 		top: 13px;
 		right: 5px;
@@ -142,6 +142,13 @@ export const SearchInfoSwitch = styled.div`
 	&.hover {
 		color: #333333;
 		cursor: pointer;
+	}
+	.spin {
+		display: block;
+		float: left;
+		font-size: 12px;
+		margin-right: 2px;
+		transition: all .2s;
 	}
 `;
 
