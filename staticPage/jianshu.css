@@ -1,0 +1,356 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	font-size: 17px;
+	margin: 0;
+}
+
+.header__inner {
+	width: 100%;
+	height: 56px;
+	border-bottom: 1px solid #f0f0f0;
+	display: flex;
+}
+
+.header__logo {
+	display: block;
+	flex-grow: 1;
+	width: 100px;
+	height: 100%;
+	background-image: url("./statics/jianshu-logo.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.header__nav {
+	flex-grow: 8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.item__left {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.item__right {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 15px;
+}
+
+.nav__search {
+	width: 160px;
+	height: 38px;
+	border: none;
+	border-radius: 40px;
+	background-color: #eee;
+	font-size: 14px;
+	padding: 0 20px;
+	outline: none;  /*聚焦搜索框时不显示边框*/
+}
+
+.nav__item {
+	margin-right: 10px;
+	padding: 5px 15px;
+}
+
+.register {
+	width: 80px;
+	height: 38px;
+	border: 1px solid rgba(236,97,73,.7);
+	border-radius: 20px;
+	padding: 6px 12px;
+	color: #ea6f5a;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 5px;
+}
+
+.write {
+	width: 100px;
+	height: 40px;
+	border: 1px solid #ea6f5a;
+	border-radius: 20px;
+	padding: 6px 12px;
+	background-color: #ea6f5a;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 15px;
+}
+
+.container {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	display: flex;
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.col__left {
+	width: 70%;
+	padding-top: 30px;
+	padding-left: 15px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.banner__image {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	margin-bottom: 35px;
+}
+
+.split__line {
+	width: 100%;
+	height: 0;
+	border-top: 1px solid #f0f0f0;
+}
+
+.article {
+	display: flex;
+	padding: 15px 2px 20px 0px;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.article__content {
+	width: 65%;
+	height: auto;
+}
+
+.article__header {
+	font-size: 18px;
+}
+
+.article__title {
+	text-decoration: none;
+	color: #333;
+	margin-bottom: 4px;
+	font-weight: 700;
+}
+
+.article__abstract {
+	font-size: 13px;
+	line-height: 24px;
+	color: #999;
+}
+
+.article__footer {
+	font-size: 12px;
+	color: #b4b4b4;
+	display: flex;
+}
+
+.article__author {
+	margin-right: 10px;
+}
+
+.article__comment {
+	margin-right: 10px;
+}
+
+.article__imageBlock {
+	width: 35%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.article__image {
+	width: 75%;
+	min-width: 120px;
+	height: auto;
+}
+
+.load__more {
+	width: 100%;
+	height: 40px;
+	margin: 30px 0px 60px 0px;
+	padding: 10px 15px;
+	border-radius: 20px;
+	background-color: #a5a5a5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+}
+
+.load__text {
+	color: #fff;
+	margin: 0 auto;
+}
+
+
+.col__right {
+	width: 30%;
+	min-width: 210px;
+	padding-top: 30px;
+	margin-left: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.tagNav {
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+.nav__image {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+.app__download {
+	width: 100%;
+	height: auto;
+	padding: 7px 10px;
+	border: 1px solid #f0f0f0;
+	border-radius: 6px;
+	margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+}
+
+.qr__code {
+	width: 25%;
+	height: auto;
+}
+
+.qr__description {
+	width: 75%;
+	margin-left: 2px;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.qr__title {
+	font-size: 14px;
+	color: #333;
+}
+
+.qr__adInfo {
+	font-size: 12px;
+	color: #999;
+	margin-top: 4px;
+}
+
+.recommend__author {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.recommend__author__header {
+	display: flex;
+	justify-content: space-between;
+	font-size: 14px;
+	color: #969696;
+	margin-bottom: 15px;
+}
+
+.recommend__author__items {
+	margin-bottom: 20px;
+}
+
+.recommend__author__item {
+	display: flex;
+	align-items: center;
+}
+
+.recommend__author__avatar {
+	width: 20%;
+	border-radius: 50%;
+}
+
+.recommend__author__info {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding-top: 5px;
+	padding-left: 10px;
+	line-height: 20px;
+}
+
+.name__follow {
+	display: flex;
+	justify-content: space-between;
+}
+
+.author__name {
+	font-size: 14px;
+	color: #333;
+}
+
+.follow {
+	font-size: 13px;
+	font-weight: 400;
+	color: #42c02e;
+}
+
+.achievement {
+	font-size: 12px;
+	color: #969696;
+	margin-top: 2px;
+	margin-bottom: 10px;
+}
+
+.see__all {
+	width: 100%;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+	padding: 7px 7px 7px 12px;
+	background-color: #f7f7f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.see__all__text {
+	font-size: 13px;
+	color: #787878;
+}
+
+.back__to__top {
+	width: 52px;
+	height: 52px;
+	border: 1px solid #dcdcdc;
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+}
+
+.jianshu__about {
+	color: #969696;
+	font-size: 13px;
+}
+
+.jianshu__about__item {
+	text-decoration: none;
+	color: #969696;
+}
+
+.copyright {
+	color: #c8c8c8;
+	font-size: 12px;
+}
